@@ -1,0 +1,298 @@
+[
+    {
+        "playlistID": 0,
+        "playlist_name": "Turn Up",
+        "playlist_author": "Zen",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 3,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Chauncey",
+                "artist": "Ian",
+                "album": "Valedictorian",
+                "runtime": "01:51"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Canadian Goose",
+                "artist": "Lil Uzi Vert",
+                "album": "Lil Uzi Vert vs. The World",
+                "runtime": "03:38"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Angels",
+                "artist": "A$AP Rocky",
+                "album": "LONG.LIVE.A$AP",
+                "runtime": "03:47"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "XO Tour Llama",
+                "artist": "Lil Uzi Vert",
+                "album": "Luv Is Rage",
+                "runtime": "04:00"
+            }
+        ]
+    },
+    {
+        "playlistID": 1,
+        "playlist_name": "Chill Vibes",
+        "playlist_author": "Mellow",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 2,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Electric",
+                "artist": "Alina Baraz feat. Khalid",
+                "album": "Urban Flora",
+                "runtime": "03:21"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Get You",
+                "artist": "Daniel Caesar",
+                "album": "Freudian",
+                "runtime": "03:22"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Lost Without You",
+                "artist": "Robin Thicke",
+                "album": "The Evolution of Robin Thicke",
+                "runtime": "04:14"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Eastside",
+                "artist": "Benny Blanco, Halsey, and Khalid",
+                "album": "Friends Keep Secrets",
+                "runtime": "03:12"
+            }
+        ]
+    },
+     {
+        "playlistID": 2,
+        "playlist_name": "Throwbacks",
+        "playlist_author": "Nostalgia",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 9,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "I Want It That Way",
+                "artist": "Backstreet Boys",
+                "album": "Millennium",
+                "runtime": "03:33"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Bye Bye Bye",
+                "artist": "NSYNC",
+                "album": "No Strings Attached",
+                "runtime": "03:20"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Waterfalls",
+                "artist": "TLC",
+                "album": "CrazySexyCool",
+                "runtime": "04:39"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Say My Name",
+                "artist": "Destiny's Child",
+                "album": "The Writing's on the Wall",
+                "runtime": "04:01"
+            }
+        ]
+    },
+    {
+        "playlistID": 3,
+        "playlist_name": "Electronic Oasis",
+        "playlist_author": "Vibez",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 17,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Sandstorm",
+                "artist": "Darude",
+                "album": "Before the Storm",
+                "runtime": "03:46"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "One",
+                "artist": "Veracocha",
+                "album": "One",
+                "runtime": "03:36"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Children",
+                "artist": "Robert Miles",
+                "album": "Dreamland",
+                "runtime": "04:05"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Insomnia",
+                "artist": "Faithless",
+                "album": "Reverence",
+                "runtime": "03:34"
+            }
+        ]
+    },
+    {
+        "playlistID": 4,
+        "playlist_name": "R&B Nights",
+        "playlist_author": "Soulful",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 38,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Crazy in Love",
+                "artist": "Beyoncé feat. Jay-Z",
+                "album": "Dangerously in Love",
+                "runtime": "03:56"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "SexyBack",
+                "artist": "Justin Timberlake",
+                "album": "FutureSex/LoveSounds",
+                "runtime": "04:02"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Lost Without You",
+                "artist": "Robin Thicke",
+                "album": "The Evolution of Robin Thicke",
+                "runtime": "04:14"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Pony",
+                "artist": "Ginuwine",
+                "album": "Ginuwine... The Bachelor",
+                "runtime": "04:12"
+            }
+        ]
+    },
+    {
+        "playlistID": 5,
+        "playlist_name": "Indie Anthems",
+        "playlist_author": "Hipster",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 7,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Mr. Brightside",
+                "artist": "The Killers",
+                "album": "Hot Fuss",
+                "runtime": "03:42"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Best Day of My Life",
+                "artist": "American Authors",
+                "album": "Oh, What a Life",
+                "runtime": "03:24"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "First Day of My Life",
+                "artist": "Bright Eyes",
+                "album": "I'm Wide Awake, It's Morning",
+                "runtime": "03:08"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Home",
+                "artist": "Edward Sharpe & The Magnetic Zeros",
+                "album": "Up from Below",
+                "runtime": "03:41"
+            }
+        ]
+    },
+    {
+        "playlistID": 6,
+        "playlist_name": "Country Roads",
+        "playlist_author": "Outlaw",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 14,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Friends in Low Places",
+                "artist": "Garth Brooks",
+                "album": "No Fences",
+                "runtime": "04:18"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Forever and Ever, Amen",
+                "artist": "Randy Travis",
+                "album": "Always & Forever",
+                "runtime": "02:32"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Country Boy Can Survive",
+                "artist": "Hank Williams Jr.",
+                "album": "A Whole Lot of Hank",
+                "runtime": "04:16"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Red Dirt Road",
+                "artist": "Brooks & Dunn",
+                "album": "It Won't Be Christmas Without You",
+                "runtime": "04:20"
+            }
+        ]
+    },
+    {
+        "playlistID": 7,
+        "playlist_name": "Rock Revival",
+        "playlist_author": "Rebel",
+        "playlist_art": "./assets/img/playlist.png",
+        "like_count": 35,
+        "songs": [
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Sweet Child O' Mine",
+                "artist": "Guns N' Roses",
+                "album": "Appetite for Destruction",
+                "runtime": "05:56"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Barracuda",
+                "artist": "Heart",
+                "album": "Little Queen",
+                "runtime": "04:22"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Crazy Train",
+                "artist": "Ozzy Osbourne",
+                "album": "Blizzard of Ozz",
+                "runtime": "04:51"
+            },
+            {
+                "cover": "./assets/img/song.png",
+                "title": "Back in Black",
+                "artist": "AC/DC",
+                "album": "Back in Black",
+                "runtime": "04:16"
+            }
+        ]
+    }
+]

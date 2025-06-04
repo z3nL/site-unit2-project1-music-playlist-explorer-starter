@@ -24,11 +24,15 @@ main {
 }
 
 .playlist-cards {
-    /* TODO Convert to grid display, why didn't I do this from the start */
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+
+    /* TODO Grid display overhaul (very low prio)
+    /* display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr; */
 
     /* Referring to each playlist card */
     article {
@@ -43,6 +47,11 @@ main {
         }
 
         img#heart { height: 20px; } 
+        img#heart:hover,
+        img#heart:focus {
+            text-decoration: none;
+            cursor: pointer;
+        }
 
         h2,p { 
             margin-top: 8px; 
@@ -74,7 +83,6 @@ main {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     /**/
     
@@ -87,7 +95,9 @@ main {
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 60%;
     width: 80%; /* Could be more or less, depending on screen size */
     /**/
 
@@ -98,7 +108,7 @@ main {
 
         img#cover { 
             height: 200px; 
-            border: 1px solid darkslategray;
+            border: 1.5px solid darkslategray;
         }
         img#xicon {
             height: 20px;
@@ -129,6 +139,11 @@ main {
     .playlistContent {
         display: flex;
         flex-direction: column;
+        height: 60%;
+        overflow: auto;
+        padding: 5px;
+        border: 2.5px solid black;
+        border-radius: 5px;
 
         /* Referring to each song card */
         article {
@@ -136,11 +151,12 @@ main {
             flex-direction: row;
             justify-content: space-between;
 
-            img{ 
+            img { 
                 height: 150px; 
                 border: 1px solid darkslategray;
             }
 
+            /* "Left" side */
             .left {
                 display: flex;
                 flex-direction: row;
@@ -159,14 +175,11 @@ main {
             }
 
             padding: 5px;
-            border: 1px solid darkslategray;
+            margin: 5px;
+            border: 2px solid darkslategray;
             border-radius: 5px;
         }
     }
-
-    border: 1px solid darkslategray;
-    border-radius: 5px;
-
 }
 
 footer {
