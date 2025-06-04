@@ -4,22 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Music Playlist Explorer</title>
+    <title>Playlistify</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <!-- Your header content here -->
+        <h1>Playlistify</h1>
     </header>
 
     <main> 
-        <!-- Your main content here -->
+        <section class="playlist-cards">
+            <article>
+                <img id="cover" onclick="toggleModal()" src="./assets/img/playlist.png" alt="playlist cover">
+                <h2>Playlist Title</h2>
+                <p>Creator Name</p>
+                <div class="likecount">
+                    <img id="heart" src="./assets/img/hearticon.png" alt="a heart icon">
+                    <p>0</p>
+                </div>
+            </article>
+            <article>
+                <img id="cover" onclick="toggleModal()" src="./assets/img/playlist.png" alt="playlist cover">
+                <h2>Playlist Title</h2>
+                <p>Creator Name</p>
+                <div class="likecount">
+                    <img id="heart" src="./assets/img/hearticon.png" alt="a heart icon">
+                    <p>0</p>
+                </div>
+            </article>
+            <article>
+                <img id="cover" onclick="toggleModal()" src="./assets/img/playlist.png" alt="playlist cover">
+                <h2>Playlist Title</h2>
+                <p>Creator Name</p>
+                <div class="likecount">
+                    <img id="heart" src="./assets/img/hearticon.png" alt="a heart icon">
+                    <p>0</p>
+                </div>
+            </article>
+            <article>
+                <img id="cover" onclick="toggleModal()" src="./assets/img/playlist.png" alt="playlist cover">
+                <h2>Playlist Title</h2>
+                <p>Creator Name</p>
+                <div class="likecount">
+                    <img id="heart" src="./assets/img/hearticon.png" alt="a heart icon">
+                    <p>0</p>
+                </div>
+            </article>
+        </section>
+
+        <section id="playlistModal" class="modal">
+            <div class="modalContent">
+                <div class="playlistHeader">
+                    <div class="left">
+                        <img id="cover" src="./assets/img/playlist.png" alt="playlist cover">
+                        <div class="plInfo">
+                            <h3>Playlist Title</h3>
+                            <p>Creator Name</p>
+                        </div>
+                    </div>
+                    <img id="xicon" class="close" onclick="toggleModal()" src="./assets/img/xicon.svg" alt="X icon">
+                </div>
+
+                <div class="playlistContent">
+                    <article>
+                        <div class="left">
+                            <img id="cover" src="./assets/img/song.png" alt="song cover">
+                            <div class="songInfo">
+                                <h3>Song Title</h3>
+                                <p>Artist Name</p>
+                                <p>Album Name</p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p>0:00</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <!-- Your footer content here -->
+        <h3>Zen L // CodePath 2025</h3>
     </footer>
     <script src="data/data.js"></script>
     <script src="script.js"></script>

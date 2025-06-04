@@ -2,5 +2,175 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f8f8;
+    background-color: lightgray;/*#0081FB;*/
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    h1 {
+        color: darkslategray;
+        padding: 10px;
+        padding-left: 20px;
+        text-shadow: 1px 1px 2px green;
+    }
+    border-bottom: solid 3px darkslategray;
+}
+
+main {
+    height: 70%;
+    padding: 10px;
+    background-color: white;
+}
+
+.playlist-cards {
+    /* TODO Convert to grid display, why didn't I do this from the start */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    /* Referring to each playlist card */
+    article {
+        img#cover { 
+            height: 200px; 
+            border: solid 1px darkslategray;
+        }
+        img#cover:hover,
+        img#cover:focus {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        img#heart { height: 20px; } 
+
+        h2,p { 
+            margin-top: 8px; 
+            margin-bottom: 8px; 
+        }
+
+        .likecount { 
+            p { margin: 0px 0px 0px 10px; }
+            display: inline-flex;
+        }
+        
+        padding: 7px;
+        border: solid 2px darkslategray;
+        border-radius: 3px;
+        margin: 20px 4% 20px;
+        box-shadow: 5px 5px 5px black;
+    }
+    article:hover {
+        box-shadow: 5px 5px 5px #0081FB;
+    }
+}
+
+.modal {
+    /* Initial styling used from CodePath */
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    /**/
+    
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.modalContent {
+    /* Initial styling used from CodePath */
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    /**/
+
+    .playlistHeader {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        img#cover { 
+            height: 200px; 
+            border: 1px solid darkslategray;
+        }
+        img#xicon {
+            height: 20px;
+        }
+        
+        /* Referring to "left" side of header */
+        .left {
+            display: flex;
+            flex-direction: row;
+
+            .plInfo {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 20px;
+            }
+        }
+
+        .close:hover,
+        .close:focus {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        margin-bottom: 10px;
+    }
+
+    .playlistContent {
+        display: flex;
+        flex-direction: column;
+
+        /* Referring to each song card */
+        article {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            img{ 
+                height: 150px; 
+                border: 1px solid darkslategray;
+            }
+
+            .left {
+                display: flex;
+                flex-direction: row;
+
+                .songInfo {
+                    flex-direction: column;
+                    margin-left: 20px;
+                }
+            }
+
+            .right {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-right: 20px;
+            }
+
+            padding: 5px;
+            border: 1px solid darkslategray;
+            border-radius: 5px;
+        }
+    }
+
+    border: 1px solid darkslategray;
+    border-radius: 5px;
+
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    border-top: solid 3px darkslategray;
 }
