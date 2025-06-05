@@ -30,14 +30,14 @@ async function loadData() {
                     card.appendChild(cardPlCover);
 
                 // Playlist name
-                let plName = document.createElement("h2");
-                    plName.textContent = pl.playlist_name;
-                    card.appendChild(plName);
+                let cardPlName = document.createElement("h2");
+                    cardPlName.textContent = pl.playlist_name;
+                    card.appendChild(cardPlName);
 
                 // Playlist author
-                let plAuthor = document.createElement("p");
-                    plAuthor.textContent = `by ${pl.playlist_author}`;
-                    card.appendChild(plAuthor);
+                let cardPlAuthor = document.createElement("p");
+                    cardPlAuthor.textContent = `by ${pl.playlist_author}`;
+                    card.appendChild(cardPlAuthor);
                 
                 // Like counter division
                 let lcDiv = document.createElement("div");
@@ -83,10 +83,12 @@ async function loadData() {
                             // Gen. info
                             let plInfo = document.createElement("div");
                                 plInfo.className = "plInfo";
-                                let plTitle = document.createElement("h3");
-                                    plTitle.textContent = pl.playlist_name;
-                                    plInfo.appendChild(plTitle);
-                                plInfo.appendChild(plAuthor);
+                                let plName = document.createElement("h3");
+                                    plName.textContent = pl.playlist_name;
+                                    plInfo.appendChild(plName);
+                                let plAuthor = document.createElement("p");
+                                    plAuthor.textContent = `by ${pl.playlist_author}`;
+                                    plInfo.appendChild(plAuthor);
                                 hLeft.appendChild(plInfo);
                             header.appendChild(hLeft);
                         
