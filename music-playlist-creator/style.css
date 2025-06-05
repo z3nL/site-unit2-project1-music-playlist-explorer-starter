@@ -29,11 +29,6 @@ main {
     flex-wrap: wrap;
     justify-content: space-around;
 
-    /* TODO Grid display overhaul (very low prio)
-    /* display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr; */
-
     /* Referring to each playlist card */
     article {
         img#cover { 
@@ -46,11 +41,13 @@ main {
             cursor: pointer;
         }
 
-        img#heart { height: 20px; } 
-        img#heart:hover,
-        img#heart:focus {
+        img[id^="heart"] { height: 20px; } 
+        img[id^="heart"]:hover,
+        img[id^="heart"]:focus {
             text-decoration: none;
             cursor: pointer;
+            border: 0.5px solid #0081FB;
+            border-radius: 8px;
         }
 
         h2,p { 
@@ -74,7 +71,7 @@ main {
     }
 }
 
-.modal {
+.playlist-modals, .testModal {
     /* Initial styling used from CodePath */
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -90,7 +87,8 @@ main {
     flex-wrap: wrap;
 }
 
-.modalContent {
+[class^="modalContent"] {
+    display: none;
     /* Initial styling used from CodePath */
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
@@ -136,10 +134,10 @@ main {
         margin-bottom: 10px;
     }
 
-    .playlistContent {
+    [class^="playlistContent"] {
         display: flex;
         flex-direction: column;
-        height: 60%;
+        height: 50%;
         overflow: auto;
         padding: 5px;
         border: 2.5px solid black;
