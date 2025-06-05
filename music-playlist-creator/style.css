@@ -31,12 +31,12 @@ main {
 
     /* Referring to each playlist card */
     article {
-        img#cover { 
+        img.cover { 
             height: 200px; 
             border: solid 1px darkslategray;
         }
-        img#cover:hover,
-        img#cover:focus {
+        img.cover:hover,
+        img.cover:focus {
             text-decoration: none;
             cursor: pointer;
         }
@@ -103,12 +103,9 @@ main {
         flex-direction: row;
         justify-content: space-between;
 
-        img#cover, img#modalCover { 
+        img#modalCover { 
             height: 200px; 
             border: 1.5px solid darkslategray;
-        }
-        img#xicon {
-            height: 20px;
         }
         
         /* Referring to "left" side of header */
@@ -121,9 +118,19 @@ main {
                 flex-direction: column;
                 justify-content: center;
                 margin-left: 20px;
+
+                .shuffle {
+                    color:white;
+                    background-color: #0081FB;
+                    width: 100px;
+                    margin-top: 3%;
+                }
             }
         }
 
+        .close {
+            height: 20px;
+        }
         .close:hover,
         .close:focus {
             text-decoration: none;

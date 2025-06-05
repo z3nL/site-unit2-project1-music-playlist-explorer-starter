@@ -16,10 +16,13 @@
 
     <main> 
         <section class="playlist-cards">
-            <!--- Script inserts here -->
+            <!--- Script inserts cards here -->
         </section>
 
         <section class="modal">
+            <!--- "Division" A: Surrounding area -->
+
+            <!--- Division B: Modal Box-->
             <div id="modalContent" class="modalContent">
                 <div class="playlistHeader">
                     <div class="left">
@@ -27,9 +30,10 @@
                         <div class="plInfo">
                             <h3 id="modalTitle" >Playlist Title</h3>
                             <p id="modalAuthor">Creator Name</p>
+                            <button class="shuffle" onclick="shuffle()">Shuffle</button>
                         </div>
                     </div>
-                    <img id="xicon" class="close" onclick="toggleModalv2(-1)" src="./assets/img/xicon.svg" alt="X icon">
+                    <img class="close" onclick="toggleModalv2(-1)" src="./assets/img/xicon.svg" alt="X icon">
                 </div>
 
                 <!--- Script inserts playlist content here-->
