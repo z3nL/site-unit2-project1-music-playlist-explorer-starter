@@ -87,7 +87,7 @@ main {
     flex-wrap: wrap;
 }
 
-[class^="modalContent"] {
+.modalContent {
     /* Initial styling used from CodePath */
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
@@ -133,7 +133,7 @@ main {
         margin-bottom: 10px;
     }
 
-    [class^="playlistContent"] {
+    .playlistContent {
         display: flex;
         flex-direction: column;
         height: 50%;
