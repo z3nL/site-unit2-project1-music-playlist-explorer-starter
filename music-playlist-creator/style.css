@@ -71,7 +71,7 @@ main {
     }
 }
 
-.playlist-modals, .testModal {
+.playlist-modal, .testModal {
     /* Initial styling used from CodePath */
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -88,7 +88,6 @@ main {
 }
 
 [class^="modalContent"] {
-    display: none;
     /* Initial styling used from CodePath */
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
@@ -104,7 +103,7 @@ main {
         flex-direction: row;
         justify-content: space-between;
 
-        img#cover { 
+        img#cover, img#modalCover { 
             height: 200px; 
             border: 1.5px solid darkslategray;
         }

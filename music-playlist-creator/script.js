@@ -23,8 +23,8 @@ async function loadData() {
                 let cardPlCover = document.createElement("img");
                     cardPlCover.id = 'cover';
                     cardPlCover.onclick = () => {
-                        toggleModal(card.id);
-                    }
+                        toggleModalv2(card.id);
+                    };
                     cardPlCover.src = pl.playlist_art;
                     cardPlCover.alt =  'playlist cover';
                     card.appendChild(cardPlCover);
@@ -52,101 +52,12 @@ async function loadData() {
                         heart.alt = 'a heart icon';
                         lcDiv.appendChild(heart);
                     let likecount = document.createElement("p");
+                        likecount.id = `lc${pl.playlistID}`;
                         likecount.textContent = pl.like_count;
                         lcDiv.appendChild(likecount);
                     card.appendChild(lcDiv);
                 
             cardBase.appendChild(card);
-
-            // Establish modals list
-            let modalsBase = document.getElementsByClassName("playlist-modals")[0];
-                // Build modal and its respective songs list
-                // Indentations represent divisional nestings
-                let modal = document.createElement("div");
-                    modal.className = `modalContent${pl.playlistID}`;
-                    
-                    // Playlist header
-                    let header = document.createElement("div");
-                        header.className = "playlistHeader";
-                        
-                        // Left side: Cover and general info
-                        let hLeft = document.createElement("div");
-                            hLeft.className = "left";
-                            let modPlCover = document.createElement("img");
-                            modPlCover.id = 'cover';
-                            modPlCover.src = pl.playlist_art;
-                            modPlCover.alt =  'playlist cover';
-
-                            // Cover
-                            hLeft.appendChild(modPlCover);
-
-                            // Gen. info
-                            let plInfo = document.createElement("div");
-                                plInfo.className = "plInfo";
-                                let plName = document.createElement("h3");
-                                    plName.textContent = pl.playlist_name;
-                                    plInfo.appendChild(plName);
-                                let plAuthor = document.createElement("p");
-                                    plAuthor.textContent = `by ${pl.playlist_author}`;
-                                    plInfo.appendChild(plAuthor);
-                                hLeft.appendChild(plInfo);
-                            header.appendChild(hLeft);
-                        
-                        // Right side: X icon to exit
-                        let xicon = document.createElement("img");
-                            xicon.id = "xicon";
-                            xicon.className = "close";
-                            xicon.onclick = toggleModal;
-                            xicon.src = './assets/img/xicon.svg';
-                            header.appendChild(xicon);
-                        
-                        modal.appendChild(header);
-                    
-                    // Playlist content: list of songs
-                    let plContent = document.createElement("div");
-                        plContent.className = `playlistContent${pl.playlistID}`;
-
-                        pl.songs.forEach(song => {
-                            let songItem = document.createElement("article");
-
-                                // Left side of song item: cover, gen. info
-                                let sLeft = document.createElement("div");
-                                    sLeft.className = "left";
-
-                                    // Cover
-                                    let sCover = document.createElement("img");
-                                        sCover.id = "cover";
-                                        sCover.src = song.cover;
-                                        sCover.alt = "song cover";
-                                        sLeft.appendChild(sCover);
-                                    
-                                    // Gen. info
-                                    let sInfo = document.createElement("div");
-                                        sInfo.className = "songInfo";
-                                        let sTitle = document.createElement("h3");
-                                            sTitle.innerText = song.title
-                                            sInfo.appendChild(sTitle);
-                                        let artist = document.createElement("p");
-                                            artist.innerText = song.artist;
-                                            sInfo.appendChild(artist);
-                                        let album = document.createElement("p");
-                                            album.innerText = song.album;
-                                            sInfo.append(album);
-                                        sLeft.appendChild(sInfo);
-                                    songItem.appendChild(sLeft);
-                                
-                                // Right side of song item: runtime
-                                let sRight = document.createElement("div");
-                                    sRight.className = "right";
-                                    let runtime = document.createElement("p");
-                                        runtime.innerText = song.runtime;
-                                        sRight.appendChild(runtime);
-                                    songItem.appendChild(sRight);
-                                    
-                            plContent.appendChild(songItem);
-                        });
-                        modal.appendChild(plContent);
-                modalsBase.appendChild(modal);
         });
 
     } catch (error) {
@@ -156,59 +67,116 @@ async function loadData() {
 loadData();
 
 /* Modal Open/Close Operations */
-function toggleModal(id) {
-    // Unhide the modal overlay. If already open, reset statuses and exit
-    let modal = document.getElementsByClassName("playlist-modals")[0];
-    if (modal.style.display === "flex") {
-        modal.style.display = "none";
-        let pl = document.getElementsByClassName(`modalContent${modal.id}`)[0];
-        pl.style.display = "none";
-        modal.setAttribute("id", null);
-        return;
-    }
-    modal.style.display = "flex";
-    
-    // Unhide only the specfic modal requested
-    let idNum = id.split("card")[1];
-    let pl = document.getElementsByClassName(`modalContent${idNum}`)[0];
-    pl.style.display = "block";
 
-    // Give the modal overlay a modal id to check when resetting statuses later
-    modal.setAttribute("id", idNum);
-
-}
-window.onclick = function(event) {
-    // Resets status and exits modal overlay when surrounding area is clicked
-    if (event.target.className === "playlist-modals") {
-        event.target.style.display = "none";
-        let pl = document.getElementsByClassName(`modalContent${event.target.id}`)[0];
-        pl.style.display = "none";
-        event.target.setAttribute("id", null);
-    }
-}
-
-/* Liking Operations */
-async function likePL(id) {
+// Second iteration of modal toggle after redundant predecessor
+async function toggleModalv2(id) {
     try {
-        // Gather playlist array
+        // Check if already open
+        let modal = document.getElementsByClassName("testModal")[0];
+        if (modal.style.display === "flex") {
+            modal.style.display = "none";
+            let plContent = document.getElementById("modalPlContent");
+            plContent.remove();
+            return;
+        }
+        modal.style.display = "flex";
+
+         // Gather playlist array
         const response = await fetch('./data/data.json');
         if (!response.ok) {
             throw new Error('Data retrieval: bad response');
         }
         const playlists = await response.json();
 
+        // Select playlist and populate info
+        let pl = playlists[id.split("card")[1]];
+
+        let cover = document.getElementById("modalCover");
+            cover.setAttribute("src", pl.playlist_art);
+        
+        let title = document.getElementById("modalTitle");
+            title.innerText = pl.playlist_name;
+        
+        let author = document.getElementById("modalAuthor");
+            author.innerText = `by ${pl.playlist_author}`
+        
+        let modalContent = document.getElementById("testModalContent");
+            let plContent = document.createElement("div");
+                plContent.id = "modalPlContent";
+                plContent.className = "playlistContent";
+                pl.songs.forEach(song => {
+                    let songItem = document.createElement("article");
+
+                        // Left side of song item: cover, gen. info
+                        let sLeft = document.createElement("div");
+                            sLeft.className = "left";
+
+                            // Cover
+                            let sCover = document.createElement("img");
+                                sCover.id = "cover";
+                                sCover.src = song.cover;
+                                sCover.alt = "song cover";
+                                sLeft.appendChild(sCover);
+
+                            // Gen. info
+                            let sInfo = document.createElement("div");
+                                sInfo.className = "songInfo";
+                                let sTitle = document.createElement("h3");
+                                    sTitle.innerText = song.title
+                                    sInfo.appendChild(sTitle);
+                                let artist = document.createElement("p");
+                                    artist.innerText = song.artist;
+                                    sInfo.appendChild(artist);
+                                let album = document.createElement("p");
+                                    album.innerText = song.album;
+                                    sInfo.append(album);
+                                sLeft.appendChild(sInfo);
+                            songItem.appendChild(sLeft);
+
+                        // Right side of song item: runtime
+                        let sRight = document.createElement("div");
+                            sRight.className = "right";
+                            let runtime = document.createElement("p");
+                                runtime.innerText = song.runtime;
+                                sRight.appendChild(runtime);
+                            songItem.appendChild(sRight);
+
+                    plContent.appendChild(songItem);
+                });
+            modalContent.appendChild(plContent);
+
+    } catch (error) {
+        console.log('toggle Modal: ', error);
+    }
+}
+window.onclick = function(event) {
+    // Resets status and exits modal overlay when surrounding area is clicked
+    if (event.target.className === "testModal") {
+        event.target.style.display = "none";
+        let plContent = document.getElementById("modalPlContent");
+        plContent.remove();
+    }
+}
+
+/* Liking Operations */
+
+async function likePL(id) {
+    try {
+
         let curHeart = document.getElementById(id);
+
+        let idNum = id.split("heart")[1];
+        let count = document.getElementById(`lc${idNum}`);
+
         if (curHeart.className === "empty") {
             curHeart.setAttribute("src", './assets/img/fullheart.png');
             curHeart.setAttribute("class", "full");
-            playlists[id.split("heart")[1]].like_count += 1;
-            console.log(playlists[id.split("heart")[1]].like_count);
+            count.innerText = parseInt(count.innerText) + 1;
         }
         else {
             curHeart.setAttribute("src", './assets/img/hearticon.png');
             curHeart.setAttribute("class", "empty");
-            playlists[id.split("heart")[1]].like_count -= 1;
-            console.log(playlists[id.split("heart")[1]].like_count);
+            count.innerText = parseInt(count.innerText) - 1;
         }
     } catch (error) {
         console.error('Liking: ', error);
