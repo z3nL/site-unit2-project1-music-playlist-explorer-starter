@@ -71,7 +71,7 @@ main {
     }
 }
 
-.playlist-modal, .testModal {
+.modal {
     /* Initial styling used from CodePath */
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

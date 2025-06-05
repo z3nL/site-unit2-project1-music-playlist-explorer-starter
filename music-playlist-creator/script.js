@@ -72,7 +72,7 @@ loadData();
 async function toggleModalv2(id) {
     try {
         // Check if already open
-        let modal = document.getElementsByClassName("testModal")[0];
+        let modal = document.getElementsByClassName("modal")[0];
         if (modal.style.display === "flex") {
             modal.style.display = "none";
             let plContent = document.getElementById("modalPlContent");
@@ -100,7 +100,7 @@ async function toggleModalv2(id) {
         let author = document.getElementById("modalAuthor");
             author.innerText = `by ${pl.playlist_author}`
         
-        let modalContent = document.getElementById("testModalContent");
+        let modalContent = document.getElementById("modalContent");
             let plContent = document.createElement("div");
                 plContent.id = "modalPlContent";
                 plContent.className = "playlistContent";
@@ -151,7 +151,7 @@ async function toggleModalv2(id) {
 }
 window.onclick = function(event) {
     // Resets status and exits modal overlay when surrounding area is clicked
-    if (event.target.className === "testModal") {
+    if (event.target.className === "modal") {
         event.target.style.display = "none";
         let plContent = document.getElementById("modalPlContent");
         plContent.remove();
