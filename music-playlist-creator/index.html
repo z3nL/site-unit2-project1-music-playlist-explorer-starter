@@ -21,7 +21,7 @@
     <main>
         <section class="filters">
                 <input id="search" placeholder="Search (Name/Author)"></input>
-                <select id="sort">
+                <select id="sort" onchange="filter()">
                     <option value="null">Sort by (Dropdown) </option>
                     <option value="aToZ">A to Z</option>
                     <option value="likeCount">Like Count</option>
@@ -33,7 +33,7 @@
 
         <section class="playlist-cards">
             <article id="addCard">
-                <img class="cover" src="./assets/img/plus.png" onclick="" alt="plus sign">
+                <img class="cover" src="./assets/img/plus.png" onclick="addModal(-2)" alt="plus sign">
                 <h2>New Playlist</h2>
                 <p>by You! (or whoever else)</p>
             </article>

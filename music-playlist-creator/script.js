@@ -84,6 +84,11 @@ async function toggleModalv2(id) {
                 editBtn.innerText = "Edit";
             return;
         }
+        // Check if modal is opened in an add context (-2)
+        if (id === -2) {
+            modal.style.display = "flex";
+            return;
+        }
 
         // Gather playlist array
         const response = await fetch('./data/data.json');
@@ -95,11 +100,12 @@ async function toggleModalv2(id) {
         // Select playlist and populate info
         let pl = playlists[id.split("card")[1]];
 
-        // Gague presence of playlist edits and populate modal based on them
+        // Gague presence of existing playlist edits and populate modal based on them
         const card = document.getElementById(`card${pl.playlistID}`);
         const cardTitle = card.getElementsByTagName("h2")[0].innerText;
         const cardAuth = card.getElementsByTagName("p")[0].innerText.split("by ")[1];
-        const change = Boolean(!(cardTitle === pl.playlist_name && cardAuth === pl.playlist_author));
+        let change = Boolean(!(cardTitle === pl.playlist_name && cardAuth === pl.playlist_author));
+            change = card ? change : false;
 
         let cover = document.getElementById("modalCover");
             cover.setAttribute("src", pl.playlist_art);
@@ -116,7 +122,8 @@ async function toggleModalv2(id) {
         let editBtn = document.getElementById("edit");
             editBtn.setAttribute("id", `edit${pl.playlistID}`);
         
-        const changeTitle = Boolean
+        // TODO Make like count persist across filtering
+
         let modalContent = document.getElementById("modalContent");
             let plContent = document.createElement("div");
                 plContent.id = "modalPlContent";
@@ -185,19 +192,32 @@ window.onclick = function(event) {
     if (event.target.className === "modal") {
         event.target.style.display = "none";
         let plContent = document.getElementById("modalPlContent");
-            plContent.remove();
+            if (plContent) { plContent.remove(); }
         let delBtn = document.getElementsByClassName("delete")[0];
             delBtn.setAttribute("id", "delete");
         let editBtn = document.getElementsByClassName("edit")[0];
             editBtn.setAttribute("id", "edit");
 
-        // Abort edits if any are pending
-        if (document.getElementsByClassName("edit")[0].innerText === "✓") {
-            editBtn.innerText = "Edit";
+        
+        // Revert alterations made to modal for adding / editing
+        let close = document.getElementsByClassName("close")[0];
+        let src = close.src.split("img/")[1];
+        if (src === "checkmark.png") {
+            close.setAttribute("src", "./assets/img/xicon.svg");
+            close.setAttribute("onclick", "toggleModalv2(-1)");
+            let s = document.getElementById("shuffle");
+            let d = document.getElementById("delete");
+            let e = document.getElementById("edit");
+                [s, d, e].forEach((item) => item.style.display = "block");
+
             title.outerHTML = `<h3 id="modalTitle">${titleOG}</h3>`;
             author.outerHTML = `<p id="modalAuthor">by ${authorOG}</h3>`;
             document.getElementById("eT").remove();
             document.getElementById("eA").remove();
+        }
+        // Abort edits if any are pending
+        if (document.getElementsByClassName("edit")[0].innerText === "✓") {
+            editBtn.innerText = "Edit";
         }
     }
 
@@ -376,4 +396,30 @@ function resetFilter() {
     }
     // Repopulate
     loadData(null);
+}
+
+function addModal() {
+    toggleModalv2(-2);
+
+    let s = document.getElementById("shuffle");
+    let d = document.getElementById("delete");
+    let e = document.getElementById("edit");
+    [s, d, e].forEach((item) => item.style.display = "none");
+
+    let title = document.getElementById("modalTitle");
+    let author = document.getElementById("modalAuthor");
+
+    title.outerHTML =
+    `<h2 id="eT">Name This Playlist</h2><input id="modalTitle" placeholder="Title"></input>`;
+
+    author.outerHTML =
+    `<h2 id="eA">Who Made This?</h2><input id="modalAuthor" placeholder="Author"></input>`;
+
+    let close = document.getElementsByClassName("close")[0];
+    close.setAttribute("src", "./assets/img/checkmark.png");
+    close.setAttribute("onclick", "completeAdd()");
+}
+
+function completeAdd() {
+
 }
