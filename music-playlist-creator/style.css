@@ -36,6 +36,12 @@ main {
     background-color: white;
 }
 
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.5%;
+}
+
 .playlist-cards {
     display: flex;
     flex-direction: row;
@@ -109,6 +115,7 @@ main {
     border-radius: 5px;
     height: 60%;
     width: 80%; /* Could be more or less, depending on screen size */
+    box-shadow: 5px 5px 5px black;
     /**/
 
     .playlistHeader {
@@ -132,11 +139,27 @@ main {
                 justify-content: center;
                 margin-left: 20px;
 
-                .shuffle {
-                    color:white;
+                button:hover,
+                button:focus {
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                #shuffle {
+                    color: white;
                     background-color: #0081FB;
                     width: 100px;
-                    margin-top: 3%;
+                    margin: 3% 0 3% 0;
+                }
+                [id^=delete] {
+                    color: white;
+                    background-color: red;
+                    width: 100px;
+                    margin: 0 0 3% 0;
+                }
+                [id^=edit] {
+                    color: white;
+                    width: 100px;
+                    background-color: green;
                 }
             }
         }

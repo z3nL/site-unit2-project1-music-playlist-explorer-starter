@@ -18,10 +18,24 @@
         </nav>
     </header>
 
-    <main> 
+    <main>
+        <section class="filters">
+                <input id="search" placeholder="Search (Name/Author)"></input>
+                <select id="sort">
+                    <option value="null">Sort by (Dropdown) </option>
+                    <option value="aToZ">A to Z</option>
+                    <option value="likeCount">Like Count</option>
+                    <option value="songCount">Song Count (Not Implemented)</option>
+                </select>
+                <button id="submit" onclick="filter()">Filter</button>
+                <button id="reset" onclick="window.location.reload()">
+                    Reset (Very Literally)
+                </button>
+        </section>
+
         <section class="playlist-cards">
             <article id="addCard">
-                <img class="cover" src="./assets/img/plus.png" alt="plus sign">
+                <img class="cover" src="./assets/img/plus.png" onclick="" alt="plus sign">
                 <h2>New Playlist</h2>
                 <p>by You! (or whoever else)</p>
             </article>
@@ -37,9 +51,11 @@
                     <div class="left">
                         <img id="modalCover" src="./assets/img/playlist.png" alt="playlist cover">
                         <div class="plInfo">
-                            <h3 id="modalTitle" >Playlist Title</h3>
+                            <h3 id="modalTitle">Playlist Title</h3>
                             <p id="modalAuthor">Creator Name</p>
-                            <button class="shuffle" onclick="shuffle()">Shuffle</button>
+                            <button id="shuffle" onclick="shuffle()">Shuffle</button>
+                            <button id="delete" class="delete">Delete</button>
+                            <button id="edit" class="edit">Edit</button>
                         </div>
                     </div>
                     <img class="close" onclick="toggleModalv2(-1)" src="./assets/img/xicon.svg" alt="X icon">

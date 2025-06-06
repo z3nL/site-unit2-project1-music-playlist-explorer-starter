@@ -67,12 +67,18 @@ loadData();
 // Second iteration of modal toggle after redundant predecessor
 async function toggleModalv2(id) {
     try {
-        // Check if already open
         let modal = document.getElementsByClassName("modal")[0];
+
+        // Check if already open
         if (modal.style.display === "flex") {
             modal.style.display = "none";
             let plContent = document.getElementById("modalPlContent");
-            plContent.remove();
+                plContent.remove();
+            let delBtn = document.getElementsByClassName("delete")[0];
+                delBtn.setAttribute("id", "delete");
+            let editBtn = document.getElementsByClassName("edit")[0];
+                editBtn.setAttribute("id", "edit");
+                editBtn.innerText = "Edit";
             return;
         }
 
@@ -86,15 +92,28 @@ async function toggleModalv2(id) {
         // Select playlist and populate info
         let pl = playlists[id.split("card")[1]];
 
+        // Gague presence of playlist edits and populate modal based on them
+        const card = document.getElementById(`card${pl.playlistID}`);
+        const cardTitle = card.getElementsByTagName("h2")[0].innerText;
+        const cardAuth = card.getElementsByTagName("p")[0].innerText.split("by ")[1];
+        const change = Boolean(!(cardTitle === pl.playlist_name && cardAuth === pl.playlist_author));
+
         let cover = document.getElementById("modalCover");
             cover.setAttribute("src", pl.playlist_art);
         
         let title = document.getElementById("modalTitle");
-            title.innerText = pl.playlist_name;
+            title.innerText = change ? cardTitle : pl.playlist_name;
         
         let author = document.getElementById("modalAuthor");
-            author.innerText = `by ${pl.playlist_author}`
+            author.innerText = `by ${change ? cardAuth : pl.playlist_author}`
         
+        let delBtn = document.getElementById("delete");
+            delBtn.setAttribute("id", `delete${pl.playlistID}`);
+        
+        let editBtn = document.getElementById("edit");
+            editBtn.setAttribute("id", `edit${pl.playlistID}`);
+        
+        const changeTitle = Boolean
         let modalContent = document.getElementById("modalContent");
             let plContent = document.createElement("div");
                 plContent.id = "modalPlContent";
@@ -127,6 +146,7 @@ async function toggleModalv2(id) {
                                     album.innerText = song.album;
                                     sInfo.append(album);
                                 sLeft.appendChild(sInfo);
+
                             songItem.appendChild(sLeft);
 
                         // Right side of song item: runtime
@@ -147,12 +167,74 @@ async function toggleModalv2(id) {
         console.log('toggle Modal: ', error);
     }
 }
+
+// TODO How could I have structured this better?
+// Various operations
 window.onclick = function(event) {
-    // Resets status and exits modal overlay when surrounding area is clicked
+    // TODO How could I have set up playlist editing better?
+    // For playlist edits
+        let title = document.getElementById("modalTitle");
+            const titleOG = title.innerText;
+        let author = document.getElementById("modalAuthor");
+            const authorOG = author.innerText;
+
+    // Resets statuses and exits modal overlay when surrounding area is clicked
     if (event.target.className === "modal") {
         event.target.style.display = "none";
         let plContent = document.getElementById("modalPlContent");
-        plContent.remove();
+            plContent.remove();
+        let delBtn = document.getElementsByClassName("delete")[0];
+            delBtn.setAttribute("id", "delete");
+        let editBtn = document.getElementsByClassName("edit")[0];
+            editBtn.setAttribute("id", "edit");
+
+        // Abort edits if any are pending
+        if (document.getElementsByClassName("edit")[0].innerText === "✓") {
+            editBtn.innerText = "Edit";
+            title.outerHTML = `<h3 id="modalTitle">${titleOG}</h3>`;
+            author.outerHTML = `<p id="modalAuthor">by ${authorOG}</h3>`;
+            document.getElementById("eT").remove();
+            document.getElementById("eA").remove();
+        }
+    }
+
+    // Operates card deletions
+    if (event.target.className === "delete") {
+        const id = event.target.id.split("delete")[1];
+        const delCard = document.getElementById(`card${id}`);
+        delCard.remove();
+        toggleModalv2(-1);
+    }
+
+    // Operates edits
+    if (event.target.className === "edit") {
+
+        // Begin edits
+        if (event.target.innerText === "Edit") {
+            event.target.innerText = "✓";
+
+            title.outerHTML =
+            `<h2 id="eT">Edit Title</h2><input id="modalTitle" value="${title.innerText}" placeholder="Title"></input>`;
+
+            author.outerHTML =
+            `<h2 id="eA">Edit Author</h2><input id="modalAuthor" value="${author.innerText.split("by ")[1]}" placeholder="Author"></input>`;
+        }
+
+        // Confirm changes
+        else if (event.target.innerText = "✓") {
+            event.target.innerText = "Edit";
+            title.outerHTML = `<h3 id="modalTitle">${title.value}</h3>`;
+            author.outerHTML = `<p id="modalAuthor">by ${author.value}</p>`;
+            document.getElementById("eT").remove();
+            document.getElementById("eA").remove();
+
+            const id = event.target.id.split("edit")[1];
+            let card = document.getElementById(`card${id}`);
+            let cardTitle = card.getElementsByTagName("h2")[0];
+                cardTitle.innerText = title.value;
+            let cardAuthor = card.getElementsByTagName("p")[0];
+                cardAuthor.innerText = `by ${author.value}`;
+        }
     }
 }
 
@@ -211,4 +293,11 @@ function shuffle() {
     // Remove orig. container and append newBox to modalContent
     songsBox.remove();
     modalContent.appendChild(newBox);
+}
+
+/* Filter Operations */
+function filter() {
+    const searchContent = document.getElementById("search").value;
+    const sortChoice = document.getElementById("sort").value;
+
 }
