@@ -25,12 +25,10 @@
                     <option value="null">Sort by (Dropdown) </option>
                     <option value="aToZ">A to Z</option>
                     <option value="likeCount">Like Count</option>
-                    <option value="songCount">Song Count (Not Implemented)</option>
+                    <option value="dateAdded">Date Added</option>
                 </select>
-                <button id="submit" onclick="filter()">Filter</button>
-                <button id="reset" onclick="window.location.reload()">
-                    Reset (Very Literally)
-                </button>
+                <button id="submit" onclick="filter()">Filter // Sort</button>
+                <button id="reset" onclick="resetFilter()">Reset</button>
         </section>
 
         <section class="playlist-cards">

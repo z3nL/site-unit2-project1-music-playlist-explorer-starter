@@ -5,6 +5,7 @@
         "playlist_author": "Zen",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 3,
+        "date_added": 63,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
@@ -42,6 +43,7 @@
         "playlist_author": "Mellow",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 2,
+        "date_added": 47,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
@@ -73,12 +75,13 @@
             }
         ]
     },
-     {
+    {
         "playlistID": 2,
         "playlist_name": "Throwbacks",
         "playlist_author": "Nostalgia",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 9,
+        "date_added": 94,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
@@ -116,6 +119,7 @@
         "playlist_author": "Vibez",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 17,
+        "date_added": 21,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
@@ -153,6 +157,7 @@
         "playlist_author": "Soulful",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 38,
+        "date_added": 6,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
@@ -190,6 +195,7 @@
         "playlist_author": "Hipster",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 7,
+        "date_added": 28,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
@@ -227,6 +233,7 @@
         "playlist_author": "Outlaw",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 14,
+        "date_added": 76,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
@@ -264,6 +271,7 @@
         "playlist_author": "Rebel",
         "playlist_art": "./assets/img/playlist.png",
         "like_count": 35,
+        "date_added": 29,
         "songs": [
             {
                 "cover": "./assets/img/song.png",
