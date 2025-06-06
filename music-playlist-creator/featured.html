@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MPE</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleFeatured.css">
+</head>
+<body>
+    <header>
+        <h1>MPE</h1>
+        <nav>
+            <a href="./index.html">Home</a>
+            <a href="./featured.html">Featured</a>
+        </nav>
+    </header>
+
+    <main class="featured">
+        <section class="featuredHeader">
+            <h1>Playlist of the Day</h1>
+            <h2 id="featuredTitle">Playlist</h2>
+            <h3 id="featuredAuthor">by Someone</h3>
+        </section>
+
+        <section class="featuredContent">
+            <div class="featuredImage">
+                <img id="featuredImage" src="./assets/img/playlist.png">
+            </div>
+            
+            <div id="featuredPlContent" class="playlistContent">
+                <!--- Script inserts playlist content here -->
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <h3>Zen L // CodePath 2025</h3>
+    </footer>
+    <script src="data/data.js"></script>
+    <script src="script.js"></script>
+    <script src="scriptFeatured.js"></script>
+</body>
+</html>

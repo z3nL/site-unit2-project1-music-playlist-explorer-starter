@@ -37,7 +37,7 @@ async function loadData() {
                     cardPlAuthor.textContent = `by ${pl.playlist_author}`;
                     card.appendChild(cardPlAuthor);
                 
-                // Like counter division
+                // Like count division
                 let lcDiv = document.createElement("div");
                     lcDiv.className = 'likecount';
                     let heart = document.createElement("img");
@@ -57,7 +57,6 @@ async function loadData() {
                 
             cardBase.appendChild(card);
         });
-
     } catch (error) {
         console.error('Data retrieval: ', error);
     }
@@ -77,7 +76,7 @@ async function toggleModalv2(id) {
             return;
         }
 
-         // Gather playlist array
+        // Gather playlist array
         const response = await fetch('./data/data.json');
         if (!response.ok) {
             throw new Error('Data retrieval: bad response');
@@ -189,12 +188,19 @@ function shuffle() {
         newBox.id = "modalPlContent";
         newBox.className = "playlistContent";
 
-    // Randomly pick items out of old container to place in new
-    let IDs = [0..songs.length];
+
+    // Load set of song IDs to randomly pick from
+    let IDs = [];
+    let id = 0; 
+    while (id < songs.length) {
+        IDs.push(id++);
+    }
+
+    // Randomly pick songs out of old container to place in new
     while (IDs.length > 0) {
-        const id = Math.floor(Math.random() * arr.length);
+        const id = Math.floor(Math.random() * IDs.length);
         const pick = IDs[id];
-        arr.splice(id, 1);
+        IDs.splice(id, 1);
 
         // Select the song and place it in the new container
         const song = document.getElementById(`song${pick}`);

@@ -2,17 +2,30 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: lightgray;/*#0081FB;*/
+    background-color: #0081FB;/*#0081FB;*/
 }
 
 header {
-    display: flex;
-    justify-content: center;
     h1 {
-        color: darkslategray;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        color: black;
         padding: 10px;
         padding-left: 20px;
         text-shadow: 1px 1px 2px green;
+    }
+    nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        a {
+            margin: 0 10px 10px 10px;
+            padding: 10px;
+            padding-left: 20px;
+            color: black;
+            text-shadow: 1px 1px 2px green;
+        }
     }
     border-bottom: solid 3px darkslategray;
 }
@@ -67,7 +80,7 @@ main {
         box-shadow: 5px 5px 5px black;
     }
     article:hover {
-        box-shadow: 5px 5px 5px #0081FB;
+        box-shadow: 6px 6px 6px #0081FB;
     }
 }
 
@@ -139,50 +152,51 @@ main {
 
         margin-bottom: 10px;
     }
+}
 
-    .playlistContent {
+
+.playlistContent {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    overflow: auto;
+    padding: 5px;
+    border: 2.5px solid black;
+    border-radius: 5px;
+
+    /* Referring to each song card */
+    article {
         display: flex;
-        flex-direction: column;
-        height: 50%;
-        overflow: auto;
-        padding: 5px;
-        border: 2.5px solid black;
-        border-radius: 5px;
+        flex-direction: row;
+        justify-content: space-between;
 
-        /* Referring to each song card */
-        article {
+        img { 
+            height: 150px; 
+            border: 1px solid darkslategray;
+        }
+
+        /* "Left" side */
+        .left {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
 
-            img { 
-                height: 150px; 
-                border: 1px solid darkslategray;
-            }
-
-            /* "Left" side */
-            .left {
-                display: flex;
-                flex-direction: row;
-
-                .songInfo {
-                    flex-direction: column;
-                    margin-left: 20px;
-                }
-            }
-
-            .right {
-                display: flex;
+            .songInfo {
                 flex-direction: column;
-                justify-content: center;
-                margin-right: 20px;
+                margin-left: 20px;
             }
-
-            padding: 5px;
-            margin: 5px;
-            border: 2px solid darkslategray;
-            border-radius: 5px;
         }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 20px;
+        }
+
+        padding: 5px;
+        margin: 5px;
+        border: 2px solid darkslategray;
+        border-radius: 5px;
     }
 }
 
@@ -190,4 +204,9 @@ footer {
     display: flex;
     justify-content: center;
     border-top: solid 3px darkslategray;
+    h3 {
+        padding: 10px;
+        padding-left: 20px;
+        text-shadow: 1px 1px 2px green;
+    }
 }

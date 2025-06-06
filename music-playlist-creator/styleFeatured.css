@@ -1,0 +1,52 @@
+.featuredHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1 {
+        text-shadow: 1px 1px 2px #0081FB;
+    }
+    h2 {
+        margin-bottom: 2px;
+    }
+    h3 {
+        margin-top: 2px;
+    }
+
+    margin-bottom: 3%;
+}
+
+/* TODO Featured page responsiveness lacking heavily */
+
+.featuredContent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.featuredImage {
+    display: flex;
+    justify-content: center;
+    
+    img {
+        height: 500px;
+    }
+
+    border: 3px solid black;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+#featuredPlContent {
+    width: 700px;
+    height: 500px;
+    padding: 0px; /* Replace original playlist content padding */
+
+    img {
+        height: 200px;
+    }
+}
+
