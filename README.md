@@ -1,10 +1,10 @@
 ## Unit Assignment: Music Playlist Explorer
 
-Submitted by: **NAME**
+Submitted by: **Zen Lambertus**
 
-Estimated time spent: **#** hours spent in total
+Estimated time spent: **35** hours spent in total
 
-Deployed Application (**required**): [Music Playlist Explorer Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Music Playlist Explorer Deployed Site](https://site-unit2-project1-music-playlist-ftwy.onrender.com/index.html)
 
 ### Application Features
 
@@ -116,9 +116,9 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site](ADD
     - [ X ] All text in the text input field is deleted
     - [ X ] All playlists in the `data.json` file are displayed in a grid view
     - [ X ] **Optional:** If the Add Playlist, Edit Existing Playlist, or Delete Playlist stretch features were implemented:
-      - [ X ] If users can add a playlist, added playlists should be included in search results.
-      - [ X ] If users can edit a playlist, search results should reflect the latest edits to each playlist.
-      - [ X ] If users can delete a playlist, deleted playlists should no longer be included in search results.
+      - [  ] If users can add a playlist, added playlists should be included in search results.
+      - [  ] If users can edit a playlist, search results should reflect the latest edits to each playlist.
+      - [  ] If users can delete a playlist, deleted playlists should no longer be included in search results.
       - **Note:** You will not be graded on the implementation of this optional subfeature to keep your grade of this stretch feature independent of your implementation of other stretch features. However, we highly suggest including this in your implementation to model realistic behavior of real applications. 
 
 - [ X ] **Sorting Options**
@@ -130,9 +130,7 @@ Deployed Application (**required**): [Music Playlist Explorer Deployed Site](ADD
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video actually renders and is playable when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+`<div style="position: relative; padding-bottom: 52.39583333333333%; height: 0;"><iframe src="https://www.loom.com/embed/342f18bb9ba447d689973858cb70342c?sid=00ff0ded-546f-4ade-a789-17932ec7b72b" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>`
 
 ### Reflection
 
