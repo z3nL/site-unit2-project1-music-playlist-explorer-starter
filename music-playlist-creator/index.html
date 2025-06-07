@@ -33,7 +33,7 @@
 
         <section class="playlist-cards">
             <article id="addCard">
-                <img class="cover" src="./assets/img/plus.png" onclick="addModal(-2)" alt="plus sign">
+                <img class="cover" src="./assets/img/plus.png" onclick="addModal()" alt="plus sign">
                 <h2>New Playlist</h2>
                 <p>by You! (or whoever else)</p>
             </article>
@@ -47,14 +47,33 @@
             <div id="modalContent" class="modalContent">
                 <div class="playlistHeader">
                     <div class="left">
-                        <img id="modalCover" src="./assets/img/playlist.png" alt="playlist cover">
+                        <div class="plImage">
+                            <img id="modalCover" src="./assets/img/playlist.png" alt="playlist cover">
+                        </div>
                         <div class="plInfo">
                             <h3 id="modalTitle">Playlist Title</h3>
                             <p id="modalAuthor">Creator Name</p>
+                        </div>
+                        <div class="buttons">
                             <button id="shuffle" onclick="shuffle()">Shuffle</button>
                             <button id="delete" class="delete">Delete</button>
                             <button id="edit" class="edit">Edit</button>
                         </div>
+                        <form id="addSongForm">
+                            <label for="songTitle">Song Title</label>
+                            <input type="text" name="songTitle" id="songTitleInput" pattern=".{1,}"required />
+                            
+                            <label for="songArtist">Artist</label>
+                            <input type="text" name="songArtist" id="songArtistInput" pattern=".{1,}" required />
+                            
+                            <label for="songAlbum">Album</label>
+                            <input type="text" name="songAlbum" id="songAlbumInput" pattern=".{1,}" required />
+                            
+                            <label for="songDur">Song Duration (XX:XX) </label>
+                            <input type="text" name="songDur" id="songDurInput" pattern="\d\d:\d\d" required />
+                            
+                            <input type="submit" value="Add Song" />
+                        </form>
                     </div>
                     <img class="close" onclick="toggleModalv2(-1)" src="./assets/img/xicon.svg" alt="X icon">
                 </div>

@@ -74,7 +74,7 @@ main {
             margin-bottom: 8px; 
         }
 
-        .likecount { 
+        .likeCount { 
             p { margin: 0px 0px 0px 10px; }
             display: inline-flex;
         }
@@ -120,8 +120,9 @@ main {
 
     .playlistHeader {
         display: flex;
-        flex-direction: row;
+        flex-flow: row wrap;
         justify-content: space-between;
+        align-content: center;
 
         img#modalCover { 
             height: 200px; 
@@ -132,6 +133,12 @@ main {
         .left {
             display: flex;
             flex-direction: row;
+
+            .plImage {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
 
             .plInfo {
                 display: flex;
@@ -144,6 +151,14 @@ main {
                     text-decoration: none;
                     cursor: pointer;
                 }
+            }
+
+            .buttons {
+                margin-left: 30px;
+                display: flex;
+                flex-flow: column wrap;
+                justify-content: center;
+
                 #shuffle {
                     color: white;
                     background-color: #0081FB;
@@ -162,6 +177,13 @@ main {
                     background-color: green;
                 }
             }
+
+            #addSongForm {
+                display: none;
+                flex-flow: column wrap;
+                justify-content: center;
+                gap: 10px;
+            }
         }
 
         .close {
@@ -177,11 +199,11 @@ main {
     }
 }
 
-
+/* TODO Fix responsiveness */
 .playlistContent {
     display: flex;
     flex-direction: column;
-    height: 50%;
+    height: 30%;
     overflow: auto;
     padding: 5px;
     border: 2.5px solid black;
