@@ -203,7 +203,7 @@ main {
 .playlistContent {
     display: flex;
     flex-direction: column;
-    height: 30%;
+    height: 20%;
     overflow: auto;
     padding: 5px;
     border: 2.5px solid black;

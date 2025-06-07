@@ -441,7 +441,7 @@ async function filter() {
         let i=0;
         while (i < playlists.length) {
             const pl = playlists[i];
-            if (!(pl.playlist_name.includes(searchContent) || pl.playlist_author.toLowerCase().includes(searchContent))) {
+            if (!(pl.playlist_name.toLowerCase().includes(searchContent) || pl.playlist_author.toLowerCase().includes(searchContent))) {
                 playlists.splice(i--, 1);
             }
             i+=1;
