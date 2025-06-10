@@ -16,8 +16,6 @@
     margin-bottom: 3%;
 }
 
-/* TODO Featured page responsiveness lacking heavily */
-
 .featuredContent {
     display: flex;
     flex-direction: row;

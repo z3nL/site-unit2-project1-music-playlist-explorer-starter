@@ -199,7 +199,6 @@ main {
     }
 }
 
-/* TODO Fix responsiveness */
 .playlistContent {
     display: flex;
     flex-direction: column;

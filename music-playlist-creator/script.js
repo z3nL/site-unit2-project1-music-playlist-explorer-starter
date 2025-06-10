@@ -15,57 +15,64 @@ async function loadData(plData) {
 
         // Establish cards
         let cardBase = document.getElementsByClassName("playlist-cards")[0];
+
         // Build playlist cards and their respective modals
         playlists.forEach(pl => {
-            // Build card | Indentations represent divisional nestings
-            let card = document.createElement("article");
-                card.id = `card${pl.playlistID}`;
-
-                // Card image
-                let cardPlCover = document.createElement("img");
-                    cardPlCover.className = 'cover';
-                    cardPlCover.onclick = () => {
-                        toggleModalv2(card.id);
-                    };
-                    cardPlCover.src = pl.playlist_art;
-                    cardPlCover.alt =  'playlist cover';
-                    card.appendChild(cardPlCover);
-
-                // Playlist name
-                let cardPlName = document.createElement("h2");
-                    cardPlName.textContent = pl.playlist_name;
-                    card.appendChild(cardPlName);
-
-                // Playlist author
-                let cardPlAuthor = document.createElement("p");
-                    cardPlAuthor.textContent = `by ${pl.playlist_author}`;
-                    card.appendChild(cardPlAuthor);
-                
-                // Like count division
-                let lcDiv = document.createElement("div");
-                    lcDiv.className = 'likeCount';
-                    let heart = document.createElement("img");
-                        heart.id = `heart${pl.playlistID}`;
-                        heart.className = "empty";
-                        heart.onclick = () => {
-                            likePL(heart.id);
-                        }
-                        heart.src = './assets/img/hearticon.png';
-                        heart.alt = 'a heart icon';
-                        lcDiv.appendChild(heart);
-                    let likeCount = document.createElement("p");
-                        likeCount.id = `lc${pl.playlistID}`;
-                        likeCount.textContent = pl.like_count;
-                        lcDiv.appendChild(likeCount);
-                    card.appendChild(lcDiv);
-                
+            let card = genCard(pl);
             cardBase.appendChild(card);
         });
     } catch (error) {
         console.error('Data retrieval: ', error);
     }
 }
-loadData(null);
+/* Playlist card generation operations */
+// Takes argument of JSON object containing an individual playlist's data
+// Returns an HTML object representing a playlist card
+function genCard(pl) {
+    // Build card | Indentations represent divisional nestings
+    let card = document.createElement("article");
+        card.id = `card${pl.playlistID}`;
+
+        // Card image
+        let cardPlCover = document.createElement("img");
+            cardPlCover.className = 'cover';
+            cardPlCover.onclick = () => {
+                toggleModalv2(card.id);
+            };
+            cardPlCover.src = pl.playlist_art;
+            cardPlCover.alt =  'playlist cover';
+            card.appendChild(cardPlCover);
+
+        // Playlist name
+        let cardPlName = document.createElement("h2");
+            cardPlName.textContent = pl.playlist_name;
+            card.appendChild(cardPlName);
+
+        // Playlist author
+        let cardPlAuthor = document.createElement("p");
+            cardPlAuthor.textContent = `by ${pl.playlist_author}`;
+            card.appendChild(cardPlAuthor);
+        
+        // Like count division
+        let lcDiv = document.createElement("div");
+            lcDiv.className = 'likeCount';
+            let heart = document.createElement("img");
+                heart.id = `heart${pl.playlistID}`;
+                heart.className = "empty";
+                heart.onclick = () => {
+                    likePL(heart.id);
+                }
+                heart.src = './assets/img/hearticon.png';
+                heart.alt = 'a heart icon';
+                lcDiv.appendChild(heart);
+            let likeCount = document.createElement("p");
+                likeCount.id = `lc${pl.playlistID}`;
+                likeCount.textContent = pl.like_count;
+                lcDiv.appendChild(likeCount);
+            card.appendChild(lcDiv);
+
+    return card;
+}
 
 /* Modal Open/Close Operations */
 // Takes argument of playlist id and displays corresponding info
@@ -76,7 +83,7 @@ async function toggleModalv2(id) {
     try {
         let modal = document.getElementsByClassName("modal")[0];
 
-        // Check if already open
+        // Check if already open: close it and reset interactive fields
         if (modal.style.display === "flex") {
             modal.style.display = "none";
             let plContent = document.getElementById("modalPlContent");
@@ -88,6 +95,7 @@ async function toggleModalv2(id) {
                 editBtn.innerText = "Edit";
             return;
         }
+
         // Check if modal is opened in an add context (-2)
         if (id === -2) {
             modal.style.display = "flex";
@@ -104,29 +112,8 @@ async function toggleModalv2(id) {
         // Select playlist and populate info
         let pl = playlists[id.split("card")[1]];
 
-        // Gague presence of existing playlist edits and populate modal based on them
-        const card = document.getElementById(`card${pl.playlistID}`);
-        const cardTitle = card.getElementsByTagName("h2")[0].innerText;
-        const cardAuth = card.getElementsByTagName("p")[0].innerText.split("by ")[1];
-        let change = Boolean(!(cardTitle === pl.playlist_name && cardAuth === pl.playlist_author));
-            change = card ? change : false;
-
-        let cover = document.getElementById("modalCover");
-            cover.setAttribute("src", pl.playlist_art);
-        
-        let title = document.getElementById("modalTitle");
-            title.innerText = change ? cardTitle : pl.playlist_name;
-        
-        let author = document.getElementById("modalAuthor");
-            author.innerText = `by ${change ? cardAuth : pl.playlist_author}`
-        
-        let delBtn = document.getElementById("delete");
-            delBtn.setAttribute("id", `delete${pl.playlistID}`);
-        
-        let editBtn = document.getElementById("edit");
-            editBtn.setAttribute("id", `edit${pl.playlistID}`);
-        
-        // TODO Make like count persist across filtering
+        // Populate modal info, accounting for changes made to an existing card
+        loadPlInfo(pl);
 
         let modalContent = document.getElementById("modalContent");
             let plContent = document.createElement("div");
@@ -134,43 +121,7 @@ async function toggleModalv2(id) {
                 plContent.className = "playlistContent";
                 let i=0;
                 pl.songs.forEach(song => {
-                    let songItem = document.createElement("article");
-                        songItem.id = `song${i++}`;
-
-                        // Left side of song item: cover, gen. info
-                        let sLeft = document.createElement("div");
-                            sLeft.className = "left";
-
-                            // Cover
-                            let sCover = document.createElement("img");
-                                sCover.src = song.cover;
-                                sCover.alt = "song cover";
-                                sLeft.appendChild(sCover);
-
-                            // Gen. info
-                            let sInfo = document.createElement("div");
-                                sInfo.className = "songInfo";
-                                let sTitle = document.createElement("h3");
-                                    sTitle.innerText = song.title
-                                    sInfo.appendChild(sTitle);
-                                let artist = document.createElement("p");
-                                    artist.innerText = song.artist;
-                                    sInfo.appendChild(artist);
-                                let album = document.createElement("p");
-                                    album.innerText = song.album;
-                                    sInfo.append(album);
-                                sLeft.appendChild(sInfo);
-
-                            songItem.appendChild(sLeft);
-
-                        // Right side of song item: runtime
-                        let sRight = document.createElement("div");
-                            sRight.className = "right";
-                            let runtime = document.createElement("p");
-                                runtime.innerText = song.runtime;
-                                sRight.appendChild(runtime);
-                            songItem.appendChild(sRight);
-
+                    let songItem = genSong(song, i++);
                     plContent.appendChild(songItem);
                 });
             modalContent.appendChild(plContent);
@@ -182,55 +133,76 @@ async function toggleModalv2(id) {
     }
 }
 
-// TODO Deprecated
-/*
-// Outer modal click event listener
-let modal = document.getElementsByClassName("modal")[0]
-modal.addEventListener("click", function(event) {
-    if (event.target.id === "modalContent") {
-        console.log("content");
-        return;
-    }
-    console.log("SOMETHING");
-    let title = document.getElementById("modalTitle");
-    const titleOG = title.innerText;
+/* Modal information injection operations */
+// Takes argument of individual JSON object containing a playlist's data
+function loadPlInfo(pl) {
+    // Gague presence of existing playlist edits and populate modal based on them
+    const card = document.getElementById(`card${pl.playlistID}`);
+    const cardTitle = card.getElementsByTagName("h2")[0].innerText;
+    const cardAuth = card.getElementsByTagName("p")[0].innerText.split("by ")[1];
+    let change = Boolean(!(cardTitle === pl.playlist_name && cardAuth === pl.playlist_author));
+        change = card ? change : false;
 
-    let author = document.getElementById("modalAuthor");
-    const authorOG = author.innerText;
-
-    modal.style.display = "none";
-    let plContent = document.getElementById("modalPlContent");
-        if (plContent) { plContent.remove(); }
-    let delBtn = document.getElementsByClassName("delete")[0];
-        delBtn.setAttribute("id", "delete");
-    let editBtn = document.getElementsByClassName("edit")[0];
-        editBtn.setAttribute("id", "edit");
-    let addSongForm = document.getElementById("addSongForm");
-        addSongForm.style.display = "none";
-
+    let cover = document.getElementById("modalCover");
+        cover.setAttribute("src", pl.playlist_art);
     
-    // Revert alterations made to modal for adding / editing
-    let close = document.getElementsByClassName("close")[0];
-    let src = close.src.split("img/")[1];
-    if (src === "checkmark.png") {
-        close.setAttribute("src", "./assets/img/xicon.svg");
-        close.setAttribute("onclick", "toggleModalv2(-1)");
-        let s = document.getElementById("shuffle");
-        let d = document.getElementById("delete");
-        let e = document.getElementById("edit");
-        [s, d, e].forEach((item) => item.style.display = "block");
+    let title = document.getElementById("modalTitle");
+        title.innerText = change ? cardTitle : pl.playlist_name;
+    
+    let author = document.getElementById("modalAuthor");
+        author.innerText = `by ${change ? cardAuth : pl.playlist_author}`
+    
+    let delBtn = document.getElementById("delete");
+        delBtn.setAttribute("id", `delete${pl.playlistID}`);
+    
+    let editBtn = document.getElementById("edit");
+        editBtn.setAttribute("id", `edit${pl.playlistID}`);
+}
 
-        title.outerHTML = `<h3 id="modalTitle">${titleOG}</h3>`;
-        author.outerHTML = `<p id="modalAuthor">by ${authorOG}</h3>`;
-        document.getElementById("eT").remove();
-        document.getElementById("eA").remove();
-    }
-    // Abort edits if any are pending
-    if (document.getElementsByClassName("edit")[0].innerText === "✓") {
-        editBtn.innerText = "Edit";
-    }
-});
-*/
+/* Song card generation operations */
+// Takes argument of individual JSON object containing a song's data 
+// and the int to be assigned to its HTML id
+// Returns an HTML object representing a song card to be appending to a playlist's contents in-modal
+function genSong(song, id) {
+    let songItem = document.createElement("article");
+        songItem.id = `song${id}`;
+
+        // Left side of song item: cover, gen. info
+        let sLeft = document.createElement("div");
+            sLeft.className = "left";
+
+            // Cover
+            let sCover = document.createElement("img");
+                sCover.src = song.cover;
+                sCover.alt = "song cover";
+                sLeft.appendChild(sCover);
+
+            // Gen. info
+            let sInfo = document.createElement("div");
+                sInfo.className = "songInfo";
+                let sTitle = document.createElement("h3");
+                    sTitle.innerText = song.title
+                    sInfo.appendChild(sTitle);
+                let artist = document.createElement("p");
+                    artist.innerText = song.artist;
+                    sInfo.appendChild(artist);
+                let album = document.createElement("p");
+                    album.innerText = song.album;
+                    sInfo.append(album);
+                sLeft.appendChild(sInfo);
+
+            songItem.appendChild(sLeft);
+
+        // Right side of song item: runtime
+        let sRight = document.createElement("div");
+            sRight.className = "right";
+            let runtime = document.createElement("p");
+                runtime.innerText = song.runtime;
+                sRight.appendChild(runtime);
+            songItem.appendChild(sRight);
+    
+    return songItem;
+}
 
 // Delete button click event listener
 let delButton = document.getElementsByClassName("delete")[0];
@@ -278,7 +250,6 @@ editButton.addEventListener("click", function(event) {
 // Outer modal click event listener
 // Leverages "window" so inner modal does not trigger response
 window.onclick = function(event) {
-    // TODO How could I have set up playlist editing better?
     // For playlist edits
         let title = document.getElementById("modalTitle");
             const titleOG = title.innerText;
@@ -319,50 +290,6 @@ window.onclick = function(event) {
             editBtn.innerText = "Edit";
         }
     }
-
-    // TODO Deprecated
-    // Operates card deletions
-    /*
-    if (event.target.className === "delete") {
-        const id = event.target.id.split("delete")[1];
-        const delCard = document.getElementById(`card${id}`);
-        delCard.remove();
-        toggleModalv2(-1);
-    }
-        */
-
-    // Operates edits
-    /*
-    if (event.target.className === "edit") {
-
-        // Begin edits
-        if (event.target.innerText === "Edit") {
-            event.target.innerText = "✓";
-
-            title.outerHTML =
-            `<h2 id="eT">Edit Title</h2><input id="modalTitle" value="${title.innerText}" placeholder="Title"></input>`;
-
-            author.outerHTML =
-            `<h2 id="eA">Edit Author</h2><input id="modalAuthor" value="${author.innerText.split("by ")[1]}" placeholder="Author"></input>`;
-        }
-
-        // Confirm changes
-        else if (event.target.innerText = "✓") {
-            event.target.innerText = "Edit";
-            title.outerHTML = `<h3 id="modalTitle">${title.value}</h3>`;
-            author.outerHTML = `<p id="modalAuthor">by ${author.value}</p>`;
-            document.getElementById("eT").remove();
-            document.getElementById("eA").remove();
-
-            const id = event.target.id.split("edit")[1];
-            let card = document.getElementById(`card${id}`);
-            let cardTitle = card.getElementsByTagName("h2")[0];
-                cardTitle.innerText = title.value;
-            let cardAuthor = card.getElementsByTagName("p")[0];
-                cardAuthor.innerText = `by ${author.value}`;
-        }
-    }
-        */
 }
 
 /* Liking Operations */
@@ -487,7 +414,6 @@ search.addEventListener("keypress", function(event) {
     }
 });
 
-
 /* Reset search filters */
 function resetFilter() {
     const search = document.getElementById("search");
@@ -527,6 +453,7 @@ function addModal() {
         close.setAttribute("src", "./assets/img/checkmark.png");
         close.setAttribute("onclick", "completeAdd()");
     
+    // Acknowledge existing modal
     let modal = document.getElementById("modalContent");
     
     // Display song addition form
@@ -576,7 +503,6 @@ addSongForm.addEventListener("submit", function(event) {
 
 });
 
-// TODO integrate additions into main display interactivity
 // Confirm playlist additions
 function completeAdd() {
     console.log("complete, i guess");
@@ -603,6 +529,15 @@ function completeAdd() {
 
     curCardList.appendChild(newCard);
 
+    resetAfterAdd(title, author);
+
+    toggleModalv2(-2);
+}
+
+// Reset fields after new playlist addition
+// Takes arguments of title and author text HTML objects to directly modify them
+function resetAfterAdd(title, author) {
+
     // Reveal default buttons
     let shuff = document.getElementById("shuffle");
     let del = document.getElementById("delete");
@@ -623,6 +558,7 @@ function completeAdd() {
     author.outerHTML = `<p id="modalAuthor">by ${author.value}</p>`;
     document.getElementById("eT").remove();
     document.getElementById("eA").remove();
-
-    toggleModalv2(-2);
 }
+
+// On startup:
+loadData(null);
