@@ -25,7 +25,6 @@ async function loadData(plData) {
         console.error('Data retrieval: ', error);
     }
 }
-
 /* Playlist card generation operations */
 // Takes argument of JSON object containing an individual playlist's data
 // Returns an HTML object representing a playlist card
@@ -415,7 +414,6 @@ search.addEventListener("keypress", function(event) {
     }
 });
 
-
 /* Reset search filters */
 function resetFilter() {
     const search = document.getElementById("search");
@@ -455,6 +453,7 @@ function addModal() {
         close.setAttribute("src", "./assets/img/checkmark.png");
         close.setAttribute("onclick", "completeAdd()");
     
+    // Acknowledge existing modal
     let modal = document.getElementById("modalContent");
     
     // Display song addition form
