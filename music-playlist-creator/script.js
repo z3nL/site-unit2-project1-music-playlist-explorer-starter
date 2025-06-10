@@ -529,6 +529,15 @@ function completeAdd() {
 
     curCardList.appendChild(newCard);
 
+    resetAfterAdd(title, author);
+
+    toggleModalv2(-2);
+}
+
+// Reset fields after new playlist addition
+// Takes arguments of title and author text HTML objects to directly modify them
+function resetAfterAdd(title, author) {
+
     // Reveal default buttons
     let shuff = document.getElementById("shuffle");
     let del = document.getElementById("delete");
@@ -549,8 +558,6 @@ function completeAdd() {
     author.outerHTML = `<p id="modalAuthor">by ${author.value}</p>`;
     document.getElementById("eT").remove();
     document.getElementById("eA").remove();
-
-    toggleModalv2(-2);
 }
 
 // On startup:
